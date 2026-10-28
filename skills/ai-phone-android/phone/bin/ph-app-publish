@@ -1,0 +1,10 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# Ставит веб-приложение из ~/apps/<slug>/index.html на страницу «Мои приложения» и открывает его в Chrome.
+# ph-app-publish trenirovki "Тренировки"
+set -e
+slug=$1; name=$2
+[ -n "$slug" ] && [ -n "$name" ] || { echo 'ph-app-publish <slug> "Название"' >&2; exit 1; }
+python ~/.local/bin/ph-apps-build.py "$slug" "$name"
+ph-apps-server
+ph-open "http://127.0.0.1:8765/$slug/"
+echo "http://127.0.0.1:8765/$slug/"

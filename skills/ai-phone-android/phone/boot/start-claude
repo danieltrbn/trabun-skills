@@ -1,0 +1,4 @@
+#!/data/data/com.termux/files/usr/bin/sh
+# Termux:Boot: после перезагрузки телефона поднимаем Claude в фоне
+. "$HOME/.bashrc_path" 2>/dev/null
+"$HOME/.local/bin/ph-claude-start"

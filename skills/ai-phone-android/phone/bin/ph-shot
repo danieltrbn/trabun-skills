@@ -1,0 +1,6 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# Скриншот экрана в ~/shots/screen.png (путь печатается) — потом открыть его через Read.
+d=$(ph-connect) || exit 1
+mkdir -p ~/shots
+f=~/shots/screen.png
+adb -s "$d" exec-out screencap -p > "$f" && echo "$f"

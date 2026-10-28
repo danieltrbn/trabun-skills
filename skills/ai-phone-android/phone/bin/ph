@@ -1,0 +1,4 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# Команда в adb shell телефона: ph input tap 500 900, ph pm list packages -3
+d=$(ph-connect) || exit 1
+exec adb -s "$d" shell "$@"

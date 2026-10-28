@@ -1,0 +1,14 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# Подключает adb к самому телефону через беспроводную отладку и печатает адрес.
+# Порт отладки меняется при каждом включении, поэтому при обрыве ищем его заново.
+saved=$(cat ~/.ph-device 2>/dev/null)
+if [ -n "$saved" ] && adb -s "$saved" get-state 2>/dev/null | grep -q device; then echo "$saved"; exit 0; fi
+[ -n "$saved" ] && { timeout 3 adb connect "$saved" >/dev/null 2>&1; adb -s "$saved" get-state 2>/dev/null | grep -q device && { echo "$saved"; exit 0; }; }
+# на чужих портах adb connect висит долго — даём каждому не больше 3 секунд
+for p in $(nmap -p 30000-49999 --open -T5 -n 127.0.0.1 -oG - 2>/dev/null | grep -oE '[0-9]+/open' | cut -d/ -f1); do
+  timeout 3 adb connect 127.0.0.1:$p >/dev/null 2>&1
+  if adb -s 127.0.0.1:$p get-state 2>/dev/null | grep -q device; then echo 127.0.0.1:$p > ~/.ph-device; echo 127.0.0.1:$p; exit 0; fi
+  adb disconnect 127.0.0.1:$p >/dev/null 2>&1
+done
+echo "ph-connect: беспроводная отладка не найдена. Нужен Wi-Fi и Settings → System → Developer options → Wireless debugging = on" >&2
+exit 1

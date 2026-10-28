@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ph *)", "Bash(ph-shot)", "Bash(ph-ui)", "Bash(ph-ui *)", "Bash(ph-type *)",
+      "Bash(ph-open *)", "Bash(ph-apps)", "Bash(ph-apps *)", "Bash(ph-connect)",
+      "Bash(termux-battery-status)", "Bash(termux-clipboard-get)", "Bash(termux-notification-list)",
+      "Bash(termux-location *)", "Bash(termux-wifi-connectioninfo)",
+      "Read(~/shots/**)", "WebFetch", "WebSearch"
+    ]
+  }
+}

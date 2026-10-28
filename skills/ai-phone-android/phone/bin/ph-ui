@@ -1,0 +1,5 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# Дерево элементов на экране: текст, id и центр для ph input tap.
+d=$(ph-connect) || exit 1
+adb -s "$d" shell uiautomator dump /sdcard/.ph-ui.xml >/dev/null 2>&1
+adb -s "$d" exec-out cat /sdcard/.ph-ui.xml | python ~/.local/bin/ph-ui.py

@@ -1,0 +1,5 @@
+
+# AI-телефон: Claude Code живёт в фоне в tmux-сессии «claude»; окно Termux показывает её
+if [[ $- == *i* ]] && [ -t 0 ] && [ -z "$TMUX" ] && [ -z "$CLAUDECODE" ] && [ -z "$PH_SHELL" ]; then
+  ph-claude-start && tmux attach -t claude
+fi

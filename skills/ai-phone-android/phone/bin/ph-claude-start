@@ -1,0 +1,25 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# Поднимает Claude Code в фоне: tmux-сессия «claude» с Remote Control, чат — в приложении Claude.
+# Рабочая папка — из ~/.ph-workdir (по умолчанию ~/phone): там CLAUDE.md или клон базы с CLAUDE.local.md.
+# Пока входа нет, в сессии открывается обычный claude, чтобы войти; после /exit стартует Remote Control.
+# Если сервер упал (например, долго не было сети), через 15 секунд стартует заново.
+termux-wake-lock
+ph-apps-server
+workdir=$(cat "$HOME/.ph-workdir" 2>/dev/null || echo "$HOME/phone")
+mkdir -p "$workdir"
+# скиллы из папки skills/ базы — ссылками в ~/.claude/skills, рядом с синхронизированными из аккаунта
+for d in "$workdir"/skills/*/; do
+  s=$(basename "$d"); [ -f "$d/SKILL.md" ] && [ ! -e "$HOME/.claude/skills/$s" ] && ln -s "$d" "$HOME/.claude/skills/$s"
+done
+tmux has-session -t claude 2>/dev/null && exit 0
+tmux new-session -d -s claude -c "$workdir" '
+  while true; do
+    if [ -s "$HOME/.claude/.credentials.json" ]; then
+      [ -d .git ] && { git pull -q --ff-only || echo "[ph] git pull не прошёл — база осталась прежней"; }
+      claude remote-control --name "Телефон"
+      echo "[ph] remote-control вышел, перезапуск через 15 с"; sleep 15
+    else
+      echo "[ph] Войди в аккаунт Claude, потом набери /exit — дальше Claude уйдёт в фон для приложения."
+      claude; sleep 2
+    fi
+  done'

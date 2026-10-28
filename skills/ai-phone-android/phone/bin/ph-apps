@@ -1,0 +1,4 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# Установленные приложения, которые можно открыть: пакет и активность.
+d=$(ph-connect) || exit 1
+adb -s "$d" shell cmd package query-activities --brief -a android.intent.action.MAIN -c android.intent.category.LAUNCHER | grep / | sed 's/^ *//' | sort

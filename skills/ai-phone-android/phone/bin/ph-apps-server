@@ -1,0 +1,6 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# Сервер для ~/apps на 127.0.0.1:8765 в tmux-сессии «apps» — снаружи телефона его не видно.
+mkdir -p ~/apps
+[ -f ~/apps/home/index.html ] || python ~/.local/bin/ph-apps-build.py
+tmux has-session -t apps 2>/dev/null && exit 0
+tmux new-session -d -s apps "python $HOME/.local/bin/ph-apps-serve.py"

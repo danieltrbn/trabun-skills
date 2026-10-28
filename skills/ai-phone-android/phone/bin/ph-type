@@ -1,0 +1,5 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# Ввод текста в поле с фокусом. Кириллицу и эмодзи adb input не умеет — идём через буфер обмена.
+d=$(ph-connect) || exit 1
+printf '%s' "$*" | termux-clipboard-set
+adb -s "$d" shell input keyevent 279

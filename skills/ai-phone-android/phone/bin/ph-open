@@ -1,0 +1,7 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# Открыть приложение по пакету (ph-open org.telegram.messenger) или ссылку (ph-open https://...).
+d=$(ph-connect) || exit 1
+case "$1" in
+  *://*|mailto:*|tel:*|geo:*) adb -s "$d" shell am start -a android.intent.action.VIEW -d "$1" >/dev/null ;;
+  *) adb -s "$d" shell monkey -p "$1" -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1 ;;
+esac
