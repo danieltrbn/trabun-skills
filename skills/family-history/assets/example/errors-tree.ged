@@ -1,0 +1,109 @@
+0 HEAD
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Анна Сергеевна /Вымыслова/
+1 SEX F
+1 BIRT
+2 DATE 12 MAR 1985
+2 PLAC Москва
+1 FAMC @F1@
+0 @I2@ INDI
+1 NAME Сергей Петрович /Вымыслов/
+1 SEX M
+1 BIRT
+2 DATE 1955
+1 FAMC @F2@
+1 FAMS @F1@
+0 @I3@ INDI
+1 NAME Ольга Ивановна /Придумова/
+1 SEX F
+1 BIRT
+2 DATE 1958
+1 FAMC @F3@
+1 FAMS @F1@
+0 @I4@ INDI
+1 NAME Пётр Ильич /Вымыслов/
+1 SEX M
+1 BIRT
+2 DATE ABT 1921
+2 PLAC Тверская губерния
+1 DEAT
+2 DATE 1943
+2 PLAC под Ржевом
+1 FAMS @F2@
+1 FAMC @F4@
+0 @I5@ INDI
+1 NAME Мария /Вымыслова/
+1 SEX F
+1 BIRT
+2 DATE 1925
+1 DEAT
+2 DATE 2001
+1 FAMS @F2@
+0 @I6@ INDI
+1 NAME Иван Кузьмич /Придумов/
+1 SEX M
+1 BIRT
+2 DATE 1930
+1 DEAT
+2 DATE 1925
+1 FAMS @F3@
+0 @I7@ INDI
+1 NAME Вера /Придумова/
+1 SEX F
+1 BIRT
+2 DATE 1952
+1 DEAT
+2 DATE 2010
+1 FAMS @F3@
+0 @I8@ INDI
+1 NAME Илья /Вымыслов/
+1 SEX M
+1 BIRT
+2 DATE 1890
+1 FAMS @F4@
+0 @I9@ INDI
+1 NAME Дарья /Вымыслова/
+1 SEX F
+1 BIRT
+2 DATE 1895
+1 DEAT
+2 DATE 1960
+1 FAMS @F4@
+0 @I10@ INDI
+1 NAME Николай Степанович /Вымыслов/
+1 SEX M
+1 BIRT
+2 DATE 1923
+1 FAMC @F4@
+0 @I11@ INDI
+1 NAME Пётр Ильич /Вымыслов/
+1 SEX M
+1 BIRT
+2 DATE 1922
+2 PLAC Тверь
+0 @I12@ INDI
+1 NAME Глеб /Посторонний/
+1 SEX M
+1 BIRT
+2 DATE 1800
+0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+0 @F2@ FAM
+1 HUSB @I4@
+1 WIFE @I5@
+1 CHIL @I2@
+0 @F3@ FAM
+1 HUSB @I6@
+1 WIFE @I7@
+1 CHIL @I3@
+0 @F4@ FAM
+1 HUSB @I8@
+1 WIFE @I9@
+1 CHIL @I4@
+1 CHIL @I10@
+1 MARR
+2 DATE 1888
+0 TRLR
